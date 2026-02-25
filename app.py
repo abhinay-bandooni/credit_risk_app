@@ -9,7 +9,7 @@ st.markdown("### AI-powered Credit Default Prediction System")
 
 @st.cache_resource
 def load_model():
-    return joblib.load("credit_risk_pipeline.pkl")
+    return joblib.load("artifacts/credit_risk_pipeline.pkl")
 
 pipeline = load_model()
 st.sidebar.header("Applicant Information")

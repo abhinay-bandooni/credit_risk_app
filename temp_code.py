@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 import joblib
-import util
+import src.data.loader as loader
 
 
 # Variables declaration
@@ -22,7 +22,7 @@ categorical_features = ["SEX","EDUCATION","PAY_0","PAY_2","PAY_3","PAY_4","PAY_5
 matplotlib.use("agg")
 
 cf.go_offline()
-data = util.load_data(filename) # load dataset
+data = loader.load_data(filename) # load dataset
 pd.pandas.set_option('display.max_columns',None)
 data.head(5)
 
@@ -81,11 +81,8 @@ pipeline.fit(X_train,Y_train)
 y_pred = pipeline.predict(X_test[1:2,])
 probability = pipeline.predict_proba(X_test[1:2,])
 ##### Performance Metrics
-print(roc_auc_score(Y_test, y_pred))
-print(classification_report(Y_test, y_pred))
-print(confusion_matrix(Y_test, y_pred))
-print("Testing score ", accuracy_score(Y_test, y_pred))
-print("Training score", pipeline.score(X_train, Y_train))
+
+print()
 
 #### Saving Pickle files
 joblib.dump(pipeline, "credit_risk_pipeline.pkl")
