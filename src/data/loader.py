@@ -1,7 +1,10 @@
 import pandas as pd
+import logging
+
 # Loading Data
 def load_data(filename):
     try:
+        logging.info("CSV file loading")
         return pd.read_csv(filename)
     except FileNotFoundError:
         print("File not found file ", filename)

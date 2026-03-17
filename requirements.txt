@@ -5,3 +5,7 @@ scikit-learn==1.8.0
 matplotlib==3.10.8
 streamlit==1.54.0
 joblib==1.5.3
+uvicorn==4.0.15
+fastapi==0.134.0
+pathlib
+datetime
