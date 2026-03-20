@@ -107,3 +107,53 @@ dtype: object
 [2 rows x 23 columns]
 2026-03-17 12:51:14,897 - CRITICAL - api.py:: Prediction----[1 0]>
 2026-03-17 12:51:14,897 - CRITICAL - api.py:: Probability---->[np.float64(0.8394360337851159), np.float64(0.7258489957313373)]
+2026-03-20 17:50:46,467 - INFO - Latest pipeline object loaded successfully.
+2026-03-20 17:51:26,139 - CRITICAL - Index(['LIMIT_BAL', 'AGE', 'EDUCATION', 'MARRIAGE', 'SEX', 'PAY_0', 'PAY_2',
+       'PAY_3', 'PAY_4', 'PAY_5', 'PAY_6', 'BILL_AMT1', 'BILL_AMT2',
+       'BILL_AMT3', 'BILL_AMT4', 'BILL_AMT5', 'BILL_AMT6', 'PAY_AMT1',
+       'PAY_AMT2', 'PAY_AMT3', 'PAY_AMT4', 'PAY_AMT5', 'PAY_AMT6'],
+      dtype='object')
+2026-03-20 17:51:26,139 - CRITICAL - LIMIT_BAL    float64
+AGE            int64
+EDUCATION      int64
+MARRIAGE       int64
+SEX            int64
+PAY_0          int64
+PAY_2          int64
+PAY_3          int64
+PAY_4          int64
+PAY_5          int64
+PAY_6          int64
+BILL_AMT1    float64
+BILL_AMT2    float64
+BILL_AMT3    float64
+BILL_AMT4    float64
+BILL_AMT5    float64
+BILL_AMT6    float64
+PAY_AMT1     float64
+PAY_AMT2     float64
+PAY_AMT3     float64
+PAY_AMT4     float64
+PAY_AMT5     float64
+PAY_AMT6     float64
+dtype: object
+2026-03-20 17:51:26,146 - CRITICAL -    LIMIT_BAL  AGE  EDUCATION  MARRIAGE  SEX  PAY_0  PAY_2  ...  BILL_AMT6  PAY_AMT1  PAY_AMT2  PAY_AMT3  PAY_AMT4  PAY_AMT5  PAY_AMT6
+0    20000.0   24          2         1    2      2      2  ...        0.0       0.0     689.0       0.0       0.0       0.0       0.0
+1    90000.0   34          2         2    2      0      0  ...    15549.0    1518.0    1500.0    1000.0    1000.0    1000.0    5000.0
+
+[2 rows x 23 columns]
+2026-03-20 17:51:26,172 - CRITICAL - api.py:: Prediction----[1 0]>
+2026-03-20 17:51:26,172 - CRITICAL - api.py:: Probability---->[np.float64(0.8394360337851159), np.float64(0.7258489957313373)]
+2026-03-20 17:51:41,394 - INFO - trains_the_model() called explicitly
+2026-03-20 17:51:41,488 - INFO - CSV file loading
+2026-03-20 19:01:14,139 - INFO - Latest pipeline object loaded successfully.
+2026-03-20 19:01:53,672 - INFO - Latest pipeline object loaded successfully.
+2026-03-20 19:12:51,108 - INFO - Latest pipeline object loaded successfully.
+2026-03-20 19:14:09,534 - INFO - Latest pipeline object loaded successfully.
+2026-03-20 19:15:01,441 - INFO - Latest pipeline object loaded successfully.
+2026-03-20 19:57:22,849 - INFO - Latest pipeline object loaded successfully.
+2026-03-20 19:57:33,720 - INFO - trains_the_model() called explicitly
+2026-03-20 20:01:21,946 - INFO - CSV file loading
+2026-03-20 20:04:23,978 - INFO - Latest pipeline object loaded successfully.
+2026-03-20 20:04:29,034 - INFO - trains_the_model() called explicitly
+2026-03-20 20:04:29,040 - INFO - CSV file loading

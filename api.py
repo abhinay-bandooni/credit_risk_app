@@ -8,6 +8,8 @@ from src.models import train
 import logging
 import os
 
+logger = logging.getLogger(__name__)
+
 logging.basicConfig(
     filename="app.log",
     level=logging.INFO,
@@ -50,8 +52,9 @@ class OutputData(BaseModel):
 # Can be called for training the model explicitly once we have the fresh dump of data is available
 @app.get("/train_the_model")
 def trains_the_model():
-    logging.info("trains_the_model() called explicitly")
-    train.create_pipeline()
+    logger.info("trains_the_model() called explicitly")
+    status = train.create_pipeline()
+    return status
 
 # Selects the latest pipeline object based on timestamp
 directory = pathlib.Path("artifacts")
@@ -59,12 +62,12 @@ pkl_files = list(directory.glob("*.pkl"))
 try:
     latest_file = max(pkl_files, key=lambda f: f.stat().st_mtime)
     pipeline = joblib.load(latest_file)
-    logging.info("Latest pipeline object loaded successfully.")
+    logger.info("Latest pipeline object loaded successfully.")
 except ValueError:
-    logging.error("No pipeline object found, hence calling the train_themodel()")
+    logger.error("No pipeline object found, hence calling the train_themodel()")
     trains_the_model()
 except Exception:
-    logging.error("Some generic exception caught while checking the pipeline objects")
+    logger.error("Some generic exception caught while checking the pipeline objects")
 
 @app.post('/predict')
 def predict_default(batch_input: List[InputData]):
@@ -77,8 +80,8 @@ def predict_default(batch_input: List[InputData]):
     prediction = pipeline.predict(temp_df)
     probability = pipeline.predict_proba(temp_df)
 
-    logging.critical(temp_df.columns)
-    logging.critical(temp_df.dtypes)
+    logger.critical(temp_df.columns)
+    logger.critical(temp_df.dtypes)
 
     # The prediction and probabilities are same for both rows in below line, despite having different input values
     probability = [row.max() for row in pipeline.predict_proba(temp_df)]
@@ -88,8 +91,8 @@ def predict_default(batch_input: List[InputData]):
         output_data = OutputData(default=prediction[i],probability=float(probability[i]))
         batch_output.append(output_data)
     
-    logging.critical(temp_df)
-    logging.critical(f"api.py:: Prediction----{prediction}>")
-    logging.critical(f"api.py:: Probability---->{probability}")
+    logger.critical(temp_df)
+    logger.critical(f"api.py:: Prediction----{prediction}>")
+    logger.critical(f"api.py:: Probability---->{probability}")
 
     return batch_output

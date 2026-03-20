@@ -5,27 +5,35 @@ from sklearn.compose import ColumnTransformer
 import joblib
 from datetime import datetime
 import logging
-import os
 from src.data import loader
 import pathlib
+
+logger = logging.getLogger(__name__)
+
+logging.basicConfig(
+    filename="app.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 
 def create_pipeline():
 
     try:
         # Loads latest csv file for training THROWS EXCEPTION BECAUSE OF PATH ISSUE
-        logging.info("train.py: Current directory is ", os.getcwd())
-        print("train.py: Current directory is ", os.getcwd())
-        print("train.py: Current directory + src and data ", os.getcwd() + "\\src" + "\\data")
-        directory = os.getcwd() + "\\src" + "\\data"
-        logging.info("train.py: Current directory is ", directory)
-        print("train.py: Current directory is ", directory)
-        csv_files = list(pathlib.Path(directory).glob("*.csv"))
+        cwd = pathlib.Path.cwd()
+        directory = pathlib.Path(cwd / 'src' / 'data')
+        csv_files = list(directory.glob("*.csv"))
+        
+        latest_file = max(csv_files, key=lambda f: f.stat().st_mtime)
+
+        logging.info("train.py: Current directory is ", cwd)
+        print("train.py: Current directory is ", cwd)
 
         if not csv_files:
             logging.error("No CSV file found.")
-            logging.info(os.getcwd())
-
+            logging.info(cwd)
+        
         latest_file = max(csv_files, key=lambda f: f.stat().st_mtime)
         dataset = loader.load_data(latest_file)
     except Exception:
@@ -47,5 +55,5 @@ def create_pipeline():
     print("train.py: Model path and file name ---> ", model_path)
     joblib.dump(pipeline, model_path)
     
-    return
+    return True
     
