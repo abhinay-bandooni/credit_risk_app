@@ -119,3 +119,4 @@ The POST request for inferencing is as below
 3. Improvising F1 score for minority class with ANN
 4. Authentication for the persons invoking the training the model and inferencing
 5. Adding test cases
+6. Mechanism for dealing with drift
